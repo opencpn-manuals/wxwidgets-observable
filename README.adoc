@@ -1,7 +1,0 @@
-= Antora wxWidgets Observable Library Manual
-
-Sources wxWidgets observable library published at
-https://opencpn-manuals/wxwidgets-observable
-
-The manual can be rebuilt locally on all platforms, see
-manual/INSTALL.md
