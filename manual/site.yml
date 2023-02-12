@@ -1,0 +1,32 @@
+---
+site:
+  title: wxWidgets Observable Library
+  url: https://opencpn-manuals.github.io/main/
+  start_page: manuals::index.adoc
+
+content:
+  edit_url: true
+  branches:
+    - master
+    - main
+  sources:
+    - url: ..
+      branches: HEAD
+      edit_url: ~
+      start-path: manual
+
+runtime:
+  fetch: true
+  log:
+    format: pretty
+    level: info
+
+output:
+  dir: docs
+  clean: true
+
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+ 
