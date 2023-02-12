@@ -71,13 +71,16 @@
 template <typename T>
 class GlobalVar : public Observable {
 public:
+  /** Create a GlobalVar using given pointer (variable address) as key. */
   GlobalVar(T* ptr) : Observable(ptr_key(ptr)), variable(ptr) {}
 
+  /** Set variable value and notify all listeners. */
   void Set(const T& arg) {
     *variable = arg;
     Observable::Notify();
   }
 
+  /** Return current variable value. */
   const T Get() { return *variable; }
 
 private:

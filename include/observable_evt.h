@@ -36,17 +36,22 @@ wxDECLARE_EVENT(obsNOTIFY, ObservedEvt);
 /** Adds a std::shared<void> element to wxCommandEvent. */
 class ObservedEvt : public wxCommandEvent {
 public:
+  /** Construct an event using given commandType and id. */
   ObservedEvt(wxEventType commandType = obsNOTIFY, int id = 0)
       : wxCommandEvent(commandType, id) {}
 
+  /** Copy operation. */
   ObservedEvt(const ObservedEvt& event) : wxCommandEvent(event) {
     this->m_shared_ptr = event.m_shared_ptr;
   }
 
+  /** Return a shallow copy of this. */
   wxEvent* Clone() const { return new ObservedEvt(*this); }
 
+  /** Retrieve pointer set by SetSharedPtr(). */
   std::shared_ptr<const void> GetSharedPtr() const { return m_shared_ptr; }
 
+  /** Set a shared_ptr transferred to listeners. */
   void SetSharedPtr(std::shared_ptr<const void> p) { m_shared_ptr = p; }
 
 private:

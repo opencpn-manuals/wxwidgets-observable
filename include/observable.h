@@ -53,6 +53,8 @@ class ObservableListener;
 /** Interface implemented by classes which listens. */
 class KeyProvider {
 public:
+
+  /** Return key used to listen and notify. */
   virtual std::string GetKey() const = 0;
 };
 
@@ -82,14 +84,17 @@ class Observable : public KeyProvider {
   friend class ObservableListener;
 
 public:
+  /** Create an instance listening to given key. */
   Observable(const std::string& _key)
       : key(_key), m_list(ListenersByKey::GetInstance(_key)) {}
 
+  /** Create an instance listening to key provided by kp.GetKey(). */
   Observable(const KeyProvider& kp)  : Observable(kp.GetKey()) {}
 
   /** Notify all listeners about variable change. */
   virtual const void Notify();
 
+  /** Notify all listeners about variable change with a shared_ptr payload. */
   const void Notify(std::shared_ptr<const void> p) { Notify(p, "", 0, 0); }
 
   /**
@@ -98,6 +103,7 @@ public:
    */
   bool Unlisten(wxEvtHandler* listener, wxEventType ev);
 
+  /** Retrieve the actual listening key: */
   std::string GetKey() const { return key; }
 
   /** The key used to create and clone. */
@@ -106,12 +112,17 @@ public:
 protected:
   /**
    * Notify all listeners: send them a 'type' ObservedEvt message
-   * as defined by listen() with optional data available using GetString()
-   * and/or GetClientData().
+   * as defined by listen() with optional data available using GetString(),
+   * getInt(), GetSharedPtr() and/or GetClientData().
    */
   const void Notify(std::shared_ptr<const void> ptr, const std::string& s,
                     int num, void* client_data);
 
+  /**
+   * Notify all listeners: send them a 'type' ObservedEvt message
+   * as defined by listen() with optional data available using GetString()
+   * and/or GetClientData().
+   */
   const void Notify(const std::string& s, void* client_data) {
     Notify(nullptr, s, 0, client_data);
   }
@@ -134,12 +145,13 @@ public:
   /** Default constructor, does not listen to anything. */
   ObservableListener() : key(""), listener(0), ev_type(wxEVT_NULL) {}
 
-  /** Construct a listening object. */
+  /** Construct a listening object listening to key k. */
   ObservableListener(const std::string& k, wxEvtHandler* l, wxEventType e)
       : key(k), listener(l), ev_type(e) {
     Listen();
   }
 
+  /** Construct a listening object listening to kp.GetKey() */
   ObservableListener(const KeyProvider& kp, wxEvtHandler* l, wxEventType e) :
     ObservableListener(kp.GetKey(), l, e) {}
 
@@ -158,6 +170,10 @@ public:
   /** Set object to send wxEventType ev to listener on changes in key. */
   void Listen(const std::string& key, wxEvtHandler* listener, wxEventType evt);
 
+  /**
+   *  Set object to send wxEventType ev to listener on changes in
+   *  a KeyProvider.
+   */
   void Listen(const KeyProvider& kp, wxEvtHandler* l, wxEventType evt) {
       Listen(kp.GetKey(), l, evt);
   }

@@ -39,16 +39,16 @@
  *
  * Model usage:
  *
- *    class Model: ...
- *    public:
- *      EventVar change;
+ *     class Model: ...
+ *     public:
+ *       EventVar change;
  *
- *      void some_method() {
- *        ...
- *        change.Notify("new value")
- *      }
+ *       void some_method() {
+ *         ...
+ *         change.Notify("new value")
+ *       }
  *
- * Controller/GUI usage:
+ * Cnntroller/GUI usage:
  *
  *     class Gui: public wxEvtHandler {
  *     public:

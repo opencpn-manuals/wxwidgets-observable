@@ -68,11 +68,17 @@
 template <typename T = std::string>
 class ConfigVar : public Observable {
 public:
+  /** Create a ConfigVar given section, key and a configuration. */
   ConfigVar(const std::string& section_, const std::string& key_,
             wxConfigBase* cb);
 
+  /** Set value to given argument and notify listeners */
   void Set(const T& arg);
 
+  /**
+   * Get current value.
+   * @return value from configuration if it exists, else default_val
+   */
   const T Get(const T& default_val);
 
 private:
