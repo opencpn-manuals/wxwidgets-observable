@@ -1,8 +1,8 @@
 ---
 site:
   title: wxWidgets Observable Library
-  url: https://opencpn-manuals.github.io/main/
-  start_page: manuals::index.adoc
+  url: https://opencpn-manuals.github.io/wxwidgets-observable/
+  start_page: wxwidgets-observable::index.adoc
 
 content:
   edit_url: true
