@@ -1,7 +1,19 @@
 # observable README
 
-This is a basic notify-listen framework on top of wxWidgets.  It requires
-C++11.
+This is a basic notify-listen framework on top of wxWidgets.
+It requires C++11.
+
+Library is thread-safe in the sense that Notify() can be invoked from
+asynchronous worker threads. However, actual work performed by Listen()
+must be done in the main thread.
+
+The observable pattern makes it possible to listen to various conditions.
+When the condition is triggered, an event is sent to all listeners.
+The event is based on wxCommandEvent and can thus optionally carry
+a string, a number and/or a pointer to the listeners.
+It has been extended to also be able to carry a `shared_ptr<void>` which
+basically makes it possible to transfer any shared_ptr from the notifying
+side to the listeners.
 
 There are three out of the box use cases:
 
@@ -17,15 +29,6 @@ There are three out of the box use cases:
   variable changes and to notify about such changes. It is described in
   the _observable_globvar.h_ header.
 
-The notify event is based on wxCommandEvent and can thus optionally carry
-a string, a number and/or a pointer to the listening side. It has been
-extended to also be able to carry a `shared_ptr<void>` which basically
-makes it possible to transfer any shared_ptr from the notifying side to
-the listeners.
-
-Library is thread-safe in the sense that Notify() can be invoked from
-asynchronous worker threads. However, actual work performed by Listen()
-must be done in the main thread.
 
 The framework is developed in the opencpn project [1].
 
@@ -40,7 +43,8 @@ Stated otherwise, the key used when invoking Listen() should be the
 same as when doing Notify(). Examples includes:
 
 * The event variable described above uses an auto generated random key,
-  this works since both sides knows about the same event variable.
+  this works since both sides knows about the same event variable and
+  thus uses the same  key.
 
 * The config variable uses a key derived from the configuration value name.
   This works since both sides knows the name (path) of the configuration
