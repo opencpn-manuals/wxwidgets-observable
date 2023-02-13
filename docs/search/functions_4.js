@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['observable_36',['Observable',['../classObservable.html#a8b1f5cf716ae8410c057c6cf07d5c365',1,'Observable::Observable(const std::string &amp;_key)'],['../classObservable.html#ab25fbfe8ee00cdb0581f6c979cc6912b',1,'Observable::Observable(const KeyProvider &amp;kp)']]],
+  ['observablelistener_37',['ObservableListener',['../classObservableListener.html#aee0a2b9e5b288cb49716d84b84ad64d1',1,'ObservableListener::ObservableListener()'],['../classObservableListener.html#ad48772a2821d3672472391f66fee5018',1,'ObservableListener::ObservableListener(const std::string &amp;k, wxEvtHandler *l, wxEventType e)'],['../classObservableListener.html#a88bda29554fc07a939645b1bc7eac4e9',1,'ObservableListener::ObservableListener(const KeyProvider &amp;kp, wxEvtHandler *l, wxEventType e)'],['../classObservableListener.html#a7d457eb49b0315aa53a06e9685697fa1',1,'ObservableListener::ObservableListener(ObservableListener &amp;&amp;other)']]],
+  ['observedevt_38',['ObservedEvt',['../classObservedEvt.html#a7bffebe50c1ceff518ab5df5e5efdaa0',1,'ObservedEvt::ObservedEvt(wxEventType commandType=obsNOTIFY, int id=0)'],['../classObservedEvt.html#a3c232e3181be05f4a835d99fdccfa37c',1,'ObservedEvt::ObservedEvt(const ObservedEvt &amp;event)']]]
+];
