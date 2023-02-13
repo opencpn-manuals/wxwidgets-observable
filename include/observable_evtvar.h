@@ -34,10 +34,10 @@
 #include "observable.h"
 
 /**
- * Generic event handling between MVC Model and Controller based on a
- * shared EventVar variable
+ * Generic event handling between between two parties like MVC Model and Controller
+ * using a shared EventVar variable
  *
- * Model usage:
+ * Notifying, for example in Model code:
  *
  *     class Model: ...
  *     public:
@@ -48,7 +48,7 @@
  *         change.Notify("new value")
  *       }
  *
- * Cnntroller/GUI usage:
+ * Listening, for example  in Controller/GUI:
  *
  *     class Gui: public wxEvtHandler {
  *     public:
